@@ -73,26 +73,29 @@ public class SlidingMenuLayer extends CCLayer {
         addChild(scrollView,218, SCROLLVIEW_TAG);
 
         String[] menutitles = {"number puzzle", "picture puzzle", "camera puzzle" , "gallery puzzle"} ;
-        CCSprite tilebox = CCSprite.sprite("picture.png");	;
-        float newwidth = tilebox.getContentSize().width * 1.5f * generalscalefactor ;
-        tilescale = 1.5f * generalscalefactor ;
+        String[] menupictures = {"picture_numbers.png", "picture_photo.png", "picture_camera.png", "picture_folder.png"};
+        CCSprite tilebox = CCSprite.sprite("picture_numbers.png");
+        float newwidth = tilebox.getContentSize().width * 1.0f * generalscalefactor ;
+        tilescale = 1.0f * generalscalefactor ;
 
         for (int i=0 ; i < menutitles.length ; i++){
             //A meu image sprite
-            tilebox = CCSprite.sprite("picture.png");
+            tilebox = CCSprite.sprite(menupictures[i]);
             tilebox.setAnchorPoint(0.5f, 0.5f);
             tilebox.setScale(tilescale);
             // Each one is placed with a 30 pixel space from the next ... i *30*generalscalefactor.
-            tilebox.setPosition(CGPoint.ccp((i*newwidth) + 30*generalscalefactor + i*30*generalscalefactor , screenSize.height/2 - ((tilebox.getContentSize().height *tilescale)/2.0f) ));
+            tilebox.setPosition(CGPoint.ccp((i*newwidth) + 50*generalscalefactor + i*50*generalscalefactor , screenSize.height/2 - ((tilebox.getContentSize().height *tilescale)/2.0f) ));
 
 
             //a text title added below each menu image with same x cordinates
             CCBitmapFontAtlas nlabel = CCBitmapFontAtlas.bitmapFontAtlas(menutitles[i], "bionic.fnt");
             nlabel.setScale(0.8f * generalscalefactor);
-            nlabel.setPosition(CGPoint.ccp((i*newwidth) + 30*generalscalefactor + i*30*generalscalefactor , tilebox.getPosition().y - ((tilebox.getContentSize().height *tilescale)/2.0f) + 10*generalscalefactor));
+            nlabel.setPosition(CGPoint.ccp((i*newwidth) + 50*generalscalefactor + i*50*generalscalefactor , tilebox.getPosition().y - ((tilebox.getContentSize().height *tilescale)/2.0f) + 10*generalscalefactor));
             scrollView.addChild(tilebox,1,i);
             scrollView.addChild(nlabel);
         }
+
+
 
 
 
@@ -125,7 +128,7 @@ public class SlidingMenuLayer extends CCLayer {
             CCDirector.sharedDirector().runWithScene(scene);
         }else if (i == 1){
             try {
-                PictureGameLayer.getBitmapFromAsset("benin.jpg");
+                PictureGameLayer.getBitmapFromAsset("picture.jpg");
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
